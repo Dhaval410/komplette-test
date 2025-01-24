@@ -3425,6 +3425,29 @@
       "presets": {
         "name": "Collapsible content"
       }
+    },
+    "sub_collections": {
+      "name": "Sub collections",
+      "settings": {
+        "show_collection_title": {
+          "label": "Display collection title"
+        },
+        "show_collection_image": {
+          "label": "Display a collection image",
+          "info": "This setting is resposible to display collection image above title."
+        }
+      },
+      "blocks": {
+        "name": "List of sub collections",
+        "settings": {
+          "sub-collection_list": {
+            "label": "Sub collections list"
+          }
+        }
+      },
+      "presets": {
+        "name": "Sub collections"
+      }
     }
   }
 }
