@@ -1,0 +1,281 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "sub_collections_9QJWFK": {
+      "type": "sub-collections",
+      "blocks": {
+        "sub_collection_list_QTnbAH": {
+          "type": "sub_collection_list",
+          "settings": {
+            "sub-collection_list": "{{ collection.metafields.custom.sub_collection_list.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "sub_collection_list_QTnbAH"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 8,
+        "color_scheme": "",
+        "show_collection_title": true,
+        "show_collection_image": true,
+        "columns_mobile": "1",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "multicolumn_AjQ6V8": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_66MNh7": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_iiETjh": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/2025-01-23_16-50.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_66MNh7",
+        "column_iiETjh"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "slideshow_f6LkTf": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_GGyq4W": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-01.png",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_RNQiyx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/3470953-gf-gtmk-holiday-add-bnr-komplett-1728x380-buy-now-dadk.webp",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_TPVRxe": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner-02_3d958a7e-9a12-4906-9599-3cc937bed08a.png",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "left",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_GGyq4W",
+        "slide_RNQiyx",
+        "slide_TPVRxe"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "products_carousel_erJtDr": {
+      "type": "products-carousel",
+      "settings": {
+        "heading": "Best selling products",
+        "heading_size": "h2",
+        "recommended_display_products": "bestsellers",
+        "products_to_show": 6,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_slider": true,
+        "quick_add": "standard",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false
+      }
+    },
+    "multicolumn_chWzcM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rNfJRV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/knoksekdk_outlet_q319_spot.png",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dqn48U": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/kdk_top10_pc_q317_stripe.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rNfJRV",
+        "column_dqn48U"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
+    "products_carousel_JqmUMc": {
+      "type": "products-carousel",
+      "settings": {
+        "heading": "Most popular products",
+        "heading_size": "h2",
+        "recommended_display_products": "mostpopular",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": true,
+        "show_slider": true,
+        "quick_add": "standard",
+        "padding_top": 16,
+        "padding_bottom": 16,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "sub_collections_9QJWFK",
+    "multicolumn_AjQ6V8",
+    "slideshow_f6LkTf",
+    "products_carousel_erJtDr",
+    "multicolumn_chWzcM",
+    "products_carousel_JqmUMc"
+  ]
+}

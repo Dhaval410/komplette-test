@@ -1,0 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "sub_collections_9QJWFK": {
+      "type": "sub-collections",
+      "blocks": {
+        "sub_collection_list_QTnbAH": {
+          "type": "sub_collection_list",
+          "settings": {
+            "sub-collection_list": "{{ collection.metafields.custom.sub_collection_list.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "sub_collection_list_QTnbAH"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 8,
+        "color_scheme": "",
+        "show_collection_title": true,
+        "show_collection_image": true,
+        "columns_mobile": "1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "products_carousel_erJtDr": {
+      "type": "products-carousel",
+      "settings": {
+        "heading": "Best selling products",
+        "heading_size": "h2",
+        "recommended_display_products": "bestsellers",
+        "products_to_show": 6,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "show_slider": true,
+        "quick_add": "standard",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false
+      }
+    },
+    "products_carousel_JqmUMc": {
+      "type": "products-carousel",
+      "settings": {
+        "heading": "Most popular products",
+        "heading_size": "h2",
+        "recommended_display_products": "mostpopular",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": true,
+        "show_slider": true,
+        "quick_add": "standard",
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false
+      }
+    },
+    "multicolumn_chWzcM": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rNfJRV": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/k_intel_experience_campbox.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_dqn48U": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/k_amd_radeon6900xt_q420_depbrd_mob.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_Um7T4L": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/k_amd_ryzen5000_q420_depboard_mob.webp",
+            "title": "",
+            "text": "",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rNfJRV",
+        "column_dqn48U",
+        "column_Um7T4L"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "sub_collections_9QJWFK",
+    "products_carousel_erJtDr",
+    "products_carousel_JqmUMc",
+    "multicolumn_chWzcM"
+  ]
+}
