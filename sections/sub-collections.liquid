@@ -2,20 +2,6 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-slider.css' | asset_url | stylesheet_tag }}
 
-{% comment %} {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%} {% endcomment %}
-
 {%- liquid
   assign columns_mobile_int = section.settings.columns_mobile | plus: 0
   assign show_mobile_slider = false
@@ -37,43 +23,41 @@
       </div>
     {%- endunless -%}
 
-    {% comment %} <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"> {% endcomment %}
-      <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.collections.size }}-items"
-        id="Slider-{{ section.id }}"
-        role="list"
-      >
-        {%- liquid
-          assign columns = section.blocks.collections.size
-          if columns > 3
-            assign columns = 3
-          endif
-        -%}
+    <ul
+      class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.collections.size }}-items"
+      id="Slider-{{ section.id }}"
+      role="list"
+    >
+      {%- liquid
+        assign columns = section.blocks.collections.size
+        if columns > 3
+          assign columns = 3
+        endif
+      -%}
 
-        {%- for collection in section.blocks.first.settings.sub-collection_list -%}
-          <li
-            id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} sub-collection-item"
-            {{ collection.shopify_attributes }}
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-              style="--animation-order: {{ forloop.index }};"
-            {% endif %}
-          >
-            {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
-            {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
-            {% render 'card-sub-collection',
-              card_collection: collection,
-              media_aspect_ratio: section.settings.image_ratio,
-              columns: columns,
-              placeholder_image: placeholder_image,
-              card_image_visible: section.settings.show_collection_image,
-              card_title_visible: section.settings.show_collection_title,
-            %}
-          </li>
-        {%- endfor -%}
-      </ul>
-    {% comment %} </slider-component> {% endcomment %}
+      {%- for collection in section.blocks.first.settings.sub-collection_list -%}
+        <li
+          id="Slide-{{ section.id }}-{{ forloop.index }}"
+          class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} sub-collection-item"
+          {{ collection.shopify_attributes }}
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index }};"
+          {% endif %}
+        >
+          {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
+          {%- assign placeholder_image = 'collection-apparel-' | append: placeholder_image_index -%}
+          {% render 'card-sub-collection',
+            card_collection: collection,
+            media_aspect_ratio: section.settings.image_ratio,
+            columns: columns,
+            placeholder_image: placeholder_image,
+            card_image_visible: section.settings.show_collection_image,
+            card_title_visible: section.settings.show_collection_title,
+          %}
+        </li>
+      {%- endfor -%}
+    </ul>
   </div>
 </div>
 
