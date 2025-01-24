@@ -88,18 +88,54 @@
                     </div>
                   {%- when 'link_list' -%}
                     {%- if block.settings.menu != blank -%}
-                      <ul class="footer-block__details-content list-unstyled">
-                        {%- for link in block.settings.menu.links -%}
-                          <li>
-                            <a
-                              href="{{ link.url }}"
-                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                            >
-                              {{ link.title | escape }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
+                      <div class="footer-dropdown">
+                        <!-- Show heading only on desktop screens -->
+                        {%- if block.settings.heading != blank -%}
+                          <h2 class="footer-block__heading inline-richtext desktop-only">
+                            {{- block.settings.heading -}}
+                          </h2>
+                        {%- endif -%}
+
+                        <button class="footer-dropdown__button" onclick="toggleDropdown(this)">
+                          {%- if block.settings.heading != blank -%}
+                            <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                          {%- endif -%}
+                          <span class="footer-dropdown__icon">
+                            <span class="svg-wrapper">
+                              {{- 'icon-caret.svg' | inline_asset_content -}}
+                            </span>
+                          </span>
+                        </button>
+
+                        <ul class="footer-block__details-content list-unstyled footer-dropdown__content">
+                          {%- for link in block.settings.menu.links -%}
+                            <li>
+                              <a
+                                href="{{ link.url }}"
+                                class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                              >
+                                {{ link.title | escape }}
+                              </a>
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                      <script>
+                        function toggleDropdown(button) {
+                          const content = button.nextElementSibling;
+                          const icon = button.querySelector('.footer-dropdown__icon');
+
+                          if (content.style.display === 'block') {
+                            content.style.display = 'none';
+                            button.classList.remove('active');
+                            icon.style.transform = 'rotate(0deg)';
+                          } else {
+                            content.style.display = 'block';
+                            button.classList.add('active');
+                            icon.style.transform = 'rotate(180deg)';
+                          }
+                        }
+                      </script>
                     {%- endif -%}
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">

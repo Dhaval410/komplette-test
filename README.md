@@ -69,3 +69,14 @@ This functionality change price as per country code with suffix.
 
 - sections/product-specification.liquid
 - Note: Need to create product metafields with namespace `tech_specification` and key as per the specification group name like general, Features, etc. Type: `inline-text`.
+
+### Footer Section
+
+- sections/footer.liquid
+- assets/section-footer.css
+- Note: Add Menu links in footer and information about company.
+
+### Logo Section
+
+- sections/logo-section.liquid
+- Note: Add block for each logo.

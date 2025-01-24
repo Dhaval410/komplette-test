@@ -3448,6 +3448,18 @@
       "presets": {
         "name": "Sub collections"
       }
+    },
+    "logo_section": {
+      "blocks": {
+        "settings": {
+          "logo_image": {
+            "label": "Logo Image"
+          },
+          "link_url": {
+            "label": "Link URL"
+          }
+        }
+      }
     }
   }
 }

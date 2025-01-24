@@ -1,0 +1,60 @@
+{% schema %}
+  {
+    "name": "Logo Section",
+    "settings": [],
+    "blocks": [
+      {
+        "type": "logo",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "label": "t:sections.logo_section.blocks.settings.logo_image.label",
+            "id": "logo_image"
+          }, {
+            "type": "url",
+            "label": "t:sections.logo_section.blocks.settings.link_url.label",
+            "id": "link_url"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo Section"
+      }
+    ]
+  }
+{% endschema %}
+
+<div class="logo-section" style="text-align: center;">
+  <div class="row">
+    {% for block in section.blocks %}
+      <div class="col-xs-12 col-md-2">
+        <a href="{{ block.settings.link_url }}" title="{{ block.settings.link_url }}">
+          <img
+            src="{{ block.settings.logo_image | img_url: 'medium' }}"
+            alt="{{ block.settings.link_url }}"
+            style="display: inline; margin: 0 auto;">
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .logo-section .row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .logo-section .col-xs-12 {
+    padding: 10px;
+  }
+
+  .logo-section img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
