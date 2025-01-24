@@ -506,3 +506,129 @@
     }
   }
 }
+
+.footer__blocks-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__content-top {
+  max-width: 1340px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.footer-dropdown__content {
+  display: none;
+  list-style: none;
+  padding: 0;
+}
+
+.footer-dropdown__icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.footer-dropdown__button.active .footer-dropdown__icon {
+  transform: rotate(45deg);
+}
+
+@media screen and (max-width: 749px) {
+  .footer__blocks-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-dropdown__content {
+    display: none;
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-dropdown__content {
+    margin-bottom: 10px;
+    padding-left: 12px;
+  }
+
+  .footer-dropdown__button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-block__heading {
+    margin-bottom: 0;
+  }
+
+  .footer-dropdown__icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+  }
+
+  .footer-dropdown__button.active .footer-dropdown__icon {
+    transform: rotate(45deg);
+  }
+}
+
+/* Ensure links are always visible on larger screens */
+@media screen and (min-width: 750px) {
+  .footer-dropdown__content {
+    display: block !important;
+  }
+
+  .footer-dropdown__button {
+    display: none;
+  }
+
+  .footer-block {
+    max-width: 363px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer__blocks-wrapper {
+    flex-wrap: wrap;
+  }
+}
+
+/* Hide heading in mobile view, show in desktop */
+@media screen and (max-width: 749px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: inline;
+  }
+}
+
+/* Hide heading inside button in desktop, show in mobile */
+@media screen and (min-width: 750px) {
+  .desktop-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+}
+
+.footer-dropdown__icon {
+  .svg-wrapper {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.footer-dropdown__button.active .footer-dropdown__icon {
+  transform: rotate(180deg);
+}
