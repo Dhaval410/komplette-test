@@ -41,6 +41,7 @@
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form-extended.js' | asset_url }}" defer="defer"></script>
   {%- if product.quantity_price_breaks_configured? -%}
     <script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
@@ -84,6 +85,10 @@
           class="product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+          {%- if settings.show_inventory_quantity_on_product_page -%}
+            {% render 'inventory-status', product: product %}
+          {%- endif -%}
 
           {%- for block in section.blocks -%}
             {%- case block.type -%}
@@ -464,6 +469,9 @@
               {%- when 'variant_picker' -%}
                 {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
               {%- when 'buy_buttons' -%}
+                {% render 'custom-options' %}
+                {% render 'add-on-products' %}
+
                 {%- render 'buy-buttons',
                   block: block,
                   product: product,

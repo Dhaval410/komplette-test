@@ -1,0 +1,79 @@
+{% if product.metafields.custom_options.size > 0 %}
+  <div class="custom-option-groups">
+    {% for group in product.metafields.custom_options %}
+      {% assign key = group | first %}
+      {% assign title = group | last %}
+  
+      {% if key contains "title_" %}
+        <div class="option-group-title">
+            {{title}}
+        </div>
+        <div class="option-group">
+            {% assign index = key | replace: "title_", "" %}
+            {% assign data_key = "data_" | append: index %}
+            <ul class="options-list">
+              {% for item in product.metafields.custom_options[data_key].value %}
+                  <li class="option-item" data-group-id="{{key}}" data-product-id="{{ item.id }}">
+                    <label>
+                        <input
+                        type="checkbox"
+                        class="custom-option-product"
+                        name="add_on_products[]"
+                        value="{{ item.variants.first.id }}"/>
+                        <span class="info">{{ item.title }} + {% render 'price', product: item %} </span>
+                    </label>
+                  </li>
+              {% endfor %}
+            </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}
+
+<style>
+  .custom-option-groups .option-group-title {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .custom-option-groups{
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .custom-option-groups .option-group input[type='checkbox'] {
+    min-width: 1.7rem;
+    min-height: 1.7rem;
+  }
+
+  .custom-option-groups .options-list, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .custom-option-groups .option-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .custom-option-groups .option-group .info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between the title and price */
+    font-size: 14px;
+    font-weight: 500;
+    color: #777;
+  }
+
+</style>

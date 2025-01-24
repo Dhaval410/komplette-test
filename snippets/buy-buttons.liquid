@@ -24,7 +24,7 @@
       endif
     -%}
 
-    <product-form
+    <product-form-extended
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
@@ -98,7 +98,7 @@
           {%- endif -%}
         </div>
       {%- endform -%}
-    </product-form>
+    </product-form-extended>
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">
