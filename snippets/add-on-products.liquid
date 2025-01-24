@@ -1,0 +1,121 @@
+{% if product.metafields.custom.add_on_product.value %}
+  {{ 'addons-products.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'addons-products.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'modal-opener-extend.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'modal-dialog-extend.js' | asset_url }}" defer="defer"></script>
+
+  <addon-products>
+    <div class="add-on-products hidden">
+      <h3>Recommended Add-ons</h3>
+      <ul class="">
+        {% for product in product.metafields.custom.add_on_product.value %}
+          {% if product.selected_or_first_available_variant.available %}
+            <li class="add-on-product-item {% if product.variants.size > 1 %}variants{% endif %}" data-product-id="{{ product.id }}" 
+              >
+              <label>
+                <input
+                  type="checkbox"
+                  class="add-on-product"
+                  name="add_on_products[]"
+                  value="{{ product.variants.first.id }}"/>
+                  <h4>{{ product.title }}</h4>
+                  <span class="addon-price">{% render 'price', product: product %}</span>
+              </label>
+              <div class="product-wrapper">
+                <a class="details" href="{{ product.url }}" target="_blank">
+                  <img
+                    src="{{ product.featured_image | img_url: 'small' }}"
+                    alt="{{ product.title }}" width="" height=""
+                  />
+                  <div class="add-on-info">
+                    <p>{{ product.description | strip_html | truncate: 50 }}</p>
+                  </div>
+                </a>
+
+                {% if product.variants.size > 1 %}
+                  <div class="edit">
+                    <div class="product-options variant-selection">
+                      {% for option in product.options %}
+                        <div class="variant-selection-group">
+                          <label>{{ option }} :</label>
+                          <select class="single-option-selector variant-dropdown">
+                            {% for value in product.options_with_values[forloop.index0].values %}
+                              <option class="variant-dropdown-option">{{ value }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if product.metafields.custom.add_on_product.value %}
+        <modal-opener-extend data-modal="#PopupModal-addon">
+          <button
+            id="addon-submit"
+            type="button"
+            name="add"
+            class="button button--secondary"
+            aria-haspopup="dialog">
+            Show More..
+            {%- render 'loading-spinner' -%}
+          </button>
+        </modal-opener-extend>
+      {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <modal-dialog-extend id="PopupModal-addon" class="product-popup-modal addons shopify-section">
+      <div
+        role="dialog"
+        aria-modal="true"
+        class="product-popup-modal__content add-on-content"
+        tabindex="-1">
+        <div class="product-popup-modal__content-info add-on-products">
+          <modal-header >
+            <h2>More Recommended Add-ons</h2>
+            <button
+            id="ModalClose-addon"
+            type="button"
+            class="product-popup-modal__toggle"
+            aria-label="{{ 'accessibility.close' | t }}">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </button>
+          </modal-header>
+          <modal-body class="popup-model-body"></modal-body>
+          <model-footer class="modal-footer">
+            <button
+            id="ModalClose-addon"
+            type="button"
+            class="button button--secondary add-selected"
+            aria-label="{{ 'accessibility.close' | t }}">
+            Add Selected
+          </button>
+          </model-footer>
+        </div>
+      </div>
+    </modal-dialog-extend>
+  </addon-products>
+{% endif %}
+
+<script>
+  window.productData = {};
+  {% for product in product.metafields.custom.add_on_product.value %}
+    window.productData[{{ product.id }}] = {
+      options: {{ product.options_with_values | json }},
+      variants: [
+        {% for variant in product.variants %}
+          {
+            id: {{ variant.id }},
+            price: {{ variant.price }},
+            formatted_price: "{{ variant.price | money_with_currency }}"
+          }{% if forloop.last == false %},{% endif %}
+        {% endfor %}
+      ]
+    };
+  {% endfor %}
+</script>

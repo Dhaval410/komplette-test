@@ -1465,5 +1465,151 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Inventory Status",
+    "settings": [
+      {
+        "type": "select",
+        "id": "text_style",
+        "options": [
+          {
+            "value": "body",
+            "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__1.label"
+          },
+          {
+            "value": "subtitle",
+            "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__2.label"
+          },
+          {
+            "value": "uppercase",
+            "label": "t:sections.main-product.blocks.inventory.settings.text_style.options__3.label"
+          }
+        ],
+        "default": "body",
+        "label": "t:sections.main-product.blocks.inventory.settings.text_style.label"
+      },
+      {
+        "type": "range",
+        "id": "inventory_threshold",
+        "label": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.label",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "info": "t:sections.main-product.blocks.inventory.settings.inventory_threshold.info",
+        "default": 10
+      },
+      {
+        "type": "checkbox",
+        "id": "show_inventory_quantity",
+        "label": "t:sections.main-product.blocks.inventory.settings.show_inventory_quantity.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Display On"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_inventory_quantity_on_card_products",
+        "label": "Card Products"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_inventory_quantity_on_product_page",
+        "label": "Product Page"
+      },
+      {
+        "type": "header",
+        "content": "Conditions"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_manual_inventory_status",
+        "label": "Show manually Inventory status",
+        "info": "If you are using manual status then threshold setting will not work."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_inventory_status_icon",
+        "label": "Show Inventory Status Icon",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "condition 1"
+      },
+      {
+        "type": "text",
+        "id": "condition_1",
+        "label": "Range",
+        "info": "Enter qty range like: 1-20. if format is not correct then it fallback to default."
+      },
+      {
+        "type": "text",
+        "id": "condition_1_status",
+        "label": "Status",
+        "info": "use {{ inventory_quantity }} variable to print qty."
+      },
+      {
+        "type": "header",
+        "content": "condition 2"
+      },
+      {
+        "type": "text",
+        "id": "condition_2",
+        "label": "Range"
+      },
+      {
+        "type": "text",
+        "id": "condition_2_status",
+        "label": "Status"
+      },
+      {
+        "type": "header",
+        "content": "condition 3"
+      },
+      {
+        "type": "text",
+        "id": "condition_3",
+        "label": "Range"
+      },
+      {
+        "type": "text",
+        "id": "condition_3_status",
+        "label": "Status"
+      },
+      {
+        "type": "header",
+        "content": "Out of Stock"
+      },
+      {
+        "type": "text",
+        "id": "out_of_stock_status",
+        "label": "Status"
+      }
+    ]
+  },
+  {
+    "name": "Currency Formating",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "currency_without_zeros",
+        "label": "Currency without trailing zeros"
+      },
+      {
+        "type": "text",
+        "id": "countrie_ids_trailing_zeros",
+        "label": "Country code",
+        "info": "Enter Country code ex. DK."
+      },
+      {
+        "type": "text",
+        "id": "add_sufix",
+        "label": "Sufix",
+        "info": "it work when Currency without trailing zeros is enabled."
+      }
+    ]
   }
 ]
