@@ -23,6 +23,11 @@
           {{- 'icon-close.svg' | inline_asset_content -}}
         </span>
       </span>
+      {% if show_icon_title %}
+        <span class="header__icon-title">
+          {{ 'localization.search' | t }}
+          </span>
+      {% endif %}
     </summary>
     <div
       class="search-modal modal__content gradient"

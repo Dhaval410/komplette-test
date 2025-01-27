@@ -487,6 +487,7 @@
       "subtext": "We will send you an email to reset your password",
       "success": "We've sent you an email with a link to update your password."
     },
+    "register_text": "Register",
     "register": {
       "title": "Create account",
       "first_name": "First name",

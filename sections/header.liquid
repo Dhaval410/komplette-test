@@ -125,8 +125,14 @@
         render 'header-drawer'
       endif
 
+      assign show_icon_title = section.settings.show_icon_title
+
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1'
+        if section.settings.search_default_open
+          render 'search-desktop'
+        else
+          render 'header-search', input_id: 'Search-In-Modal-1', show_icon_title: show_icon_title
+        endif
       endif
     -%}
 
@@ -200,6 +206,17 @@
       {%- endif -%}
     {%- endif -%}
 
+    {% assign text_visibility = section.settings.show_icon_title | default: false %}
+    {% if text_visibility == false %}
+      {% assign text_visibility = 'visually-hidden' %}
+    {% else %}
+      {% assign text_visibility = 'visually-visible' %}
+    {% endif %}
+    
+    {% if section.settings.search_default_open %}
+      {% render 'search-desktop' %}
+    {% endif %}
+
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
@@ -224,26 +241,44 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
 
+      {% if section.settings.search_default_open == false %}
+          {% render 'header-search', input_id: 'Search-In-Modal', show_icon_title: show_icon_title %}
+      {% endif %}
+
+      {%- if shop.customer_accounts_enabled and customer == blank -%}
+        <a
+          href="{{ routes.account_register_url }}"
+          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+          rel="nofollow"
+          title="{{ 'customer.register' | t }}"
+        >
+          <span class="svg-wrapper">{{ 'icon-add-customer.svg' | inline_asset_content }}</span>
+          <span class="{{ text_visibility }}">
+            {{ 'customer.register_text' | t }}
+          </span>
+        </a>
+      {%- endif -%}
+        
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
           class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
           rel="nofollow"
+          title="{%- if customer -%}{{ 'customer.account_fallback' | t }}{%- else -%}{{ 'customer.log_in' | t }}{%- endif -%}"
         >
           {%- if section.settings.enable_customer_avatar -%}
             <account-icon>
               {%- if customer and customer.has_avatar? -%}
                 {{ customer | avatar }}
               {%- else -%}
-                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                <span class="svg-wrapper">{{ 'icon-customer.svg' | inline_asset_content }}</span>
               {%- endif -%}
             </account-icon>
           {%- else -%}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            <span class="svg-wrapper">{{ 'icon-customer.svg' | inline_asset_content }}</span>
           {%- endif -%}
-          <span class="visually-hidden">
+          <span class="{{ text_visibility }}">
             {%- liquid
               if customer
                 echo 'customer.account_fallback' | t
@@ -254,29 +289,34 @@
           </span>
         </a>
       {%- endif -%}
-
+        
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when '@app' -%}
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
+      
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble {{ text_visibility }}" title="{{ 'templates.cart.cart' | t }}">
+        <span class="svg-wrapper">{{ 'icon-cart-beg.svg' | inline_asset_content }}</span>
+        {% if cart == empty %}
+          <span class="{{ text_visibility }}">{{ 'templates.cart.cart' | t }}</span>
+        {%  else %}
+          <span class="{{ text_visibility }}">
+            <span class="centered-text">{{ cart.total_price | money }}</span>
+          </span>
+        {% endif %}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-          {% if cart == empty %}
-            <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
-          {% else %}
-            <span class="svg-wrapper">{{'icon-cart.svg' | inline_asset_content }}</span>
-          {% endif %}
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
+        {% if section.setting.show_icon_title == false %}
+          {%- if cart != empty -%}
+            <div class="cart-count-bubble">
+              {%- if cart.item_count < 100 -%}
+                <span aria-hidden="true">{{ cart.item_count }}</span>
+              {%- endif -%}
+              <span class="{{ text_visibility }}">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </div>
+          {%- endif -%}
+        {% endif %}
       </a>
     </div>
   </header>
@@ -527,6 +567,12 @@
       "label": "t:sections.header.settings.show_line_separator.label"
     },
     {
+      "type": "checkbox",
+      "id": "show_icon_title",
+      "default": true,
+      "label": "Show icon Title"
+    },
+    {
       "type": "header",
       "content": "t:sections.header.settings.header__1.content"
     },
@@ -575,6 +621,17 @@
       "default": true,
       "label": "t:sections.header.settings.enable_customer_avatar.label",
       "info": "t:sections.header.settings.enable_customer_avatar.info"
+    },
+    {
+      "type": "header",
+      "content": "Search Behavior Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "search_default_open",
+      "label": "Enable Search Default Open",
+      "info": "When enabled, the search bar will be open by default for Desktop view.",
+      "default": false
     },
     {
       "type": "header",
