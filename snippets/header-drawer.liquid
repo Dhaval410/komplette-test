@@ -29,7 +29,18 @@
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       >
+                        {% assign collection = collections[link.handle] %}
+                        {% if collection and collection.metafields.custom.collection_icon %}
+                          <img
+                            src="{{ collection.metafields.custom.collection_icon | image_url }}"
+                            alt="{{ collection.title }}"
+                            height="30px"
+                            width="30px"
+                            class="menu-collection-icon"
+                          >
+                        {% endif %}
                         {{ link.title | escape }}
+
                         <span class="svg-wrapper">
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
                         </span>
@@ -37,6 +48,7 @@
                           {{- 'icon-caret.svg' | inline_asset_content -}}
                         </span>
                       </summary>
+
                       <div
                         id="link-{{ link.handle | escape }}"
                         class="menu-drawer__submenu has-submenu gradient motion-reduce"
@@ -61,6 +73,16 @@
                                       aria-current="page"
                                     {% endif %}
                                   >
+                                    {% assign collection = collections[childlink.handle] %}
+                                    {% if collection and collection.metafields.custom.collection_icon %}
+                                      <img
+                                        src="{{ collection.metafields.custom.collection_icon | image_url }}"
+                                        alt="{{ collection.title }}"
+                                        height="30px"
+                                        width="30px"
+                                        class="menu-collection-icon"
+                                      >
+                                    {% endif %}
                                     {{ childlink.title | escape }}
                                   </a>
                                 {%- else -%}
@@ -69,6 +91,15 @@
                                       id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
                                       class="menu-drawer__menu-item link link--text list-menu__item focus-inset"
                                     >
+                                      {% assign collection = collections[childlink.handle] %}
+                                      {% if collection and collection.metafields.custom.collection_icon %}
+                                        <img
+                                          src="{{ collection.metafields.custom.collection_icon | image_url }}"
+                                          alt="{{ collection.title }}"
+                                          height="20px"
+                                          width="20px"
+                                        >
+                                      {% endif %}
                                       {{ childlink.title | escape }}
                                       <span class="svg-wrapper">
                                         {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -105,6 +136,16 @@
                                                 aria-current="page"
                                               {% endif %}
                                             >
+                                              {% assign collection = collections[grandchildlink.handle] %}
+                                              {% if collection and collection.metafields.custom.collection_icon %}
+                                                <img
+                                                  src="{{ collection.metafields.custom.collection_icon | image_url }}"
+                                                  alt="{{ collection.title }}"
+                                                  height="30px"
+                                                  width="30px"
+                                                  class="menu-collection-icon"
+                                                >
+                                              {% endif %}
                                               {{ grandchildlink.title | escape }}
                                             </a>
                                           </li>
@@ -128,6 +169,16 @@
                         aria-current="page"
                       {% endif %}
                     >
+                      {% assign collection = collections[link.handle] %}
+                      {% if collection and collection.metafields.custom.collection_icon %}
+                        <img
+                          src="{{ collection.metafields.custom.collection_icon | image_url }}"
+                          alt="{{ collection.title }}"
+                          height="20px"
+                          width="20px"
+                          class="menu-collection-icon"
+                        >
+                      {% endif %}
                       {{ link.title | escape }}
                     </a>
                   {%- endif -%}
